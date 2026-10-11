@@ -1,9 +1,12 @@
 @echo off
 echo Building NFS The Run Definitive Edition (.asi) with MinGW...
 
-set GXX=C:\msys64\mingw32\bin\g++.exe
-rem 32-bit toolchain, and its bin on PATH so as/ld find libwinpthread-1.dll.
-set PATH=C:\msys64\mingw32\bin;%PATH%
+rem GXX/PATH come from the environment when set (CI points them at its own
+rem MSYS2); otherwise use the local i686 toolchain.
+if not defined GXX (
+    set "GXX=C:\msys64\mingw32\bin\g++.exe"
+    set "PATH=C:\msys64\mingw32\bin;%PATH%"
+)
 set OUT=NFSTR_DefinitiveEdition.asi
 
 %GXX% -shared -O2 -std=c++17 -m32 -Wall -Wextra ^
