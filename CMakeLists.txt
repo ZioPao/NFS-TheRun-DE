@@ -45,4 +45,6 @@ target_link_libraries(NFSTR_DefinitiveEdition PRIVATE
     psapi
     kernel32
     user32
+    dxguid
+    uuid
 )
