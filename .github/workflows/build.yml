@@ -1,0 +1,36 @@
+name: Build ASI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'src/**.cpp'
+      - 'src/**.h'
+      - 'build.bat'
+      - 'CMakeLists.txt'
+      - '.github/workflows/build.yml'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW32
+          update: true
+          install: mingw-w64-i686-gcc
+
+      - name: Build
+        shell: cmd
+        run: build.bat
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: NFSTR_DefinitiveEdition
+          path: |
+            NFSTR_DefinitiveEdition.asi
+            NFSTR_DefinitiveEdition.ini

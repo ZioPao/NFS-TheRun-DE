@@ -39,7 +39,9 @@ set OUT=NFSTR_DefinitiveEdition.asi
 if %ERRORLEVEL% EQU 0 (
     echo.
     echo BUILD SUCCESSFUL: %OUT% created!
+    exit /b 0
 ) else (
     echo.
     echo BUILD FAILED with error level %ERRORLEVEL%
+    exit /b 1
 )
