@@ -28,6 +28,9 @@ DWORD WINAPI MainThread(LPVOID /*lpParam*/) {
     Config::LogSummary();
 
     // 3. Initialize Features
+    //    Force Feedback first: it installs a DirectInput import hook that must be
+    //    in place before the game creates its input devices.
+    Features::InitForceFeedback();
     Features::InitGarageCarRender();
     Features::InitExtraUIOptions();
     Features::InitPhotoMode();

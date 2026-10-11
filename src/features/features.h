@@ -96,6 +96,12 @@ namespace Features {
     void InitInputStateHook();
     void UpdateInputState();
 
+    // Scales the force-feedback effects the game sends to a DirectInput wheel,
+    // so the otherwise-unadjustable centering spring can be dialled back.
+    // Intercepts the game's DirectInput8Create through its import table.
+    // INI-gated, on by default. Installed once at startup; no ticker entry.
+    void InitForceFeedback();
+
     // Scales the AI's per-difficulty performance multipliers while Run For Your
     // Life is engaged. AI-side only, so it cannot affect the player's car.
     void InitAiDifficulty();

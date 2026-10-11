@@ -55,6 +55,12 @@ namespace Config {
         g_Config.ForcedVehicleId    = static_cast<unsigned int>(
             GetPrivateProfileIntA("VEHICLE_SWAP", "ForcedVehicleId",    0, iniPath));
 
+        g_Config.EnableForceFeedbackTuning = GetPrivateProfileIntA("FORCE_FEEDBACK", "EnableForceFeedbackTuning", 1, iniPath);
+        g_Config.FfbGainScale     = ReadIniFloat("FORCE_FEEDBACK", "GainScale",     1.0f, iniPath);
+        g_Config.FfbSpringScale   = ReadIniFloat("FORCE_FEEDBACK", "SpringScale",   0.5f, iniPath);
+        g_Config.FfbConstantScale = ReadIniFloat("FORCE_FEEDBACK", "ConstantScale", 0.4f, iniPath);
+        g_Config.FfbPeriodicScale = ReadIniFloat("FORCE_FEEDBACK", "PeriodicScale", 0.4f, iniPath);
+
         g_Config.FixEngineAudioSlew    = GetPrivateProfileIntA("HIGH_FPS_FIXES", "FixEngineAudioSlew",    1, iniPath);
         g_Config.FixKickupParticles     = GetPrivateProfileIntA("HIGH_FPS_FIXES", "FixKickupParticles", 1, iniPath);
         g_Config.KickupVelocityScale    = ReadIniFloat("HIGH_FPS_FIXES", "KickupVelocityScale", -1.0f, iniPath);
@@ -114,5 +120,8 @@ namespace Config {
         Logger::Log("  AnisotropicFiltering=%d", g_Config.AnisotropicFiltering);
         Logger::Log("  FixEngineAudioSlew=%d  FixKickupParticles=%d  KickupVelocityScale=%.4f",
             g_Config.FixEngineAudioSlew, g_Config.FixKickupParticles, g_Config.KickupVelocityScale);
+        Logger::Log("  EnableForceFeedbackTuning=%d  Gain=%.2f  Spring=%.2f  Constant=%.2f  Periodic=%.2f",
+            g_Config.EnableForceFeedbackTuning, g_Config.FfbGainScale, g_Config.FfbSpringScale,
+            g_Config.FfbConstantScale, g_Config.FfbPeriodicScale);
     }
 }

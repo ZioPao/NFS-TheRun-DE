@@ -165,6 +165,20 @@ Everything above ships off unless the text says otherwise. Every setting is
 documented in the INI itself, including what it costs and what it was measured
 against.
 
+## Wheel force feedback
+
+The Run ships no force-feedback settings, so a wheel's centering spring runs at
+full strength and there is no menu option to turn it down. This ports the
+standalone NFSTheRun-FFBFix proxy into the plugin: it intercepts the game's
+DirectInput effects and scales their magnitudes from `[FORCE_FEEDBACK]`, with the
+proxy's tuned values on by default. With no wheel connected the game creates no
+effects, so it does nothing.
+
+The proxy had to be a `dinput8.dll`, which is the filename an ASI loader usually
+takes, so the two could never be installed together. Intercepting
+`DirectInput8Create` through the game's own import table removes the conflict:
+one `.asi` now covers both.
+
 ## Install
 
 Download it from **[NFSMods](https://nfsmods.xyz/mod/5373)**. This repository holds

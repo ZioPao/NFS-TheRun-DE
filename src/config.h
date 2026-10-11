@@ -83,6 +83,19 @@ struct ConfigStruct {
     // 0 leaves the game's own choices alone.
     unsigned int ForcedVehicleId = 0;
 
+    // [FORCE_FEEDBACK]
+    // Scales the force-feedback effects the game sends to a DirectInput wheel.
+    // The Run otherwise ships no FFB settings, so the centering spring runs at
+    // full strength with no way to turn it down. 1.0 on any scale is the game's
+    // own value; the shipped defaults are the tuned ones from the standalone
+    // NFSTheRun-FFBFix proxy. The hook is only installed when the master switch
+    // is on, so a player without a wheel pays nothing.
+    int EnableForceFeedbackTuning = 1;
+    float FfbGainScale     = 1.0f;
+    float FfbSpringScale   = 0.5f;
+    float FfbConstantScale = 0.4f;
+    float FfbPeriodicScale = 0.4f;
+
     // [HIGH_FPS_FIXES]
     // Fixes the engine-audio pitch above 30 FPS. 1 = snap (recommended),
     // 2 = keep the pitch glide but only re-arm it once finished.

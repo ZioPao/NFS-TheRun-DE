@@ -24,6 +24,7 @@ set OUT=NFSTR_DefinitiveEdition.asi
     src/features/nos_tuning.cpp ^
     src/features/tod_randomizer.cpp ^
     src/features/input_state.cpp ^
+    src/features/force_feedback.cpp ^
     src/features/difficulty_text.cpp ^
     src/features/engine_audio.cpp ^
     src/features/particle_fix.cpp ^
